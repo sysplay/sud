@@ -16,7 +16,6 @@
 #include <linux/of.h>
 #include <linux/of_device.h>
 #include <linux/gcd.h>
-#include "spi_char.h"
 
 #include <linux/spi/spi.h>
 #include <linux/platform_data/spi-omap2-mcspi.h>

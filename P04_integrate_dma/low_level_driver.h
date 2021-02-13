@@ -1,6 +1,8 @@
 #ifndef LOW_LEVEL_DRIVER_H
 #define LOW_LEVEL_DRIVER_H
 
+#include <linux/cdev.h>
+
 #define OMAP2_MCSPI_MAX_FREQ        48000000
 #define OMAP2_MCSPI_MAX_FIFODEPTH   64
 #define OMAP2_MCSPI_MAX_FIFOWCNT    0xFFFF
@@ -57,6 +59,8 @@
 #define OMAP2_MCSPI_CHCTRL_EN       BIT(0)
 
 #define OMAP2_MCSPI_WAKEUPENABLE_WKEN   BIT(0)
+
+#define ENTER() printk("\n###### In %s ######\n", __func__);
 
 struct omap2_mcspi {
 	struct spi_master *master;

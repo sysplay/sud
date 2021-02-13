@@ -1,8 +1,8 @@
 # If called directly from the command line, invoke the kernel build system.
 ifeq ($(KERNELRELEASE),)
 
-	KERNEL_SOURCE := /home/expert/BbbExp/linux-4.19.103
 	#KERNEL_SOURCE := <Kernel source path>
+	KERNEL_SOURCE := /home/expert/BbbExp/linux-4.19.103
 	PWD := $(shell pwd)
 default:
 	$(MAKE) -C $(KERNEL_SOURCE) M=$(PWD) modules
@@ -14,7 +14,7 @@ clean:
 # kernel build system and can use its language.
 else
 
-	obj-m := spi.o dummy_master.o dummy_client.o spi-omap2-mcspi.o spi1.o
+	obj-m := spi.o
 	spi-y := low_level_driver.o
 
 endif
