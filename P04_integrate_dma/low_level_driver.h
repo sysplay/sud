@@ -1,8 +1,6 @@
 #ifndef LOW_LEVEL_DRIVER_H
 #define LOW_LEVEL_DRIVER_H
 
-#include <linux/cdev.h>
-
 #define OMAP2_MCSPI_MAX_FREQ        48000000
 #define OMAP2_MCSPI_MAX_FIFODEPTH   64
 #define OMAP2_MCSPI_MAX_FIFOWCNT    0xFFFF
@@ -62,19 +60,25 @@
 
 #define ENTER() printk("\n###### In %s ######\n", __func__);
 
+struct omap2_mcspi_dma {
+	struct dma_chan *dma_tx;
+	struct dma_chan *dma_rx;
+
+	struct completion dma_tx_completion;
+	struct completion dma_rx_completion;
+
+	char dma_rx_ch_name[14];
+	char dma_tx_ch_name[14];
+};
+
 struct omap2_mcspi {
 	struct spi_master *master;
 	/* Virtual base address of the controller */
 	void __iomem	*base;
+	unsigned long		phys;
+	struct omap2_mcspi_dma	*dma_channels;
 	struct device   *dev;
-    /* for providing a character device access */
-    struct class *spi_class;
-    dev_t devt;
-    struct cdev cdev;
+	int	fifo_depth;
 };
-
-//int omap2_mcspi_setup_transfer(struct omap2_mcspi *mcspi, struct spi_transfer *t);
-
-//int spi_rw(struct omap2_mcspi *mcspi, char *buff);
 
 #endif

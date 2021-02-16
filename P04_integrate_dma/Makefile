@@ -14,7 +14,7 @@ clean:
 # kernel build system and can use its language.
 else
 
-	obj-m := spi.o
+	obj-m := spi.o spi_dma.o
 	spi-y := low_level_driver.o
 
 endif
