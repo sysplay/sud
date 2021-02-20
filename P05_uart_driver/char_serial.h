@@ -25,12 +25,10 @@ struct uart_omap_port {
 	 * be saved whenever the register is read but the bits will not
 	 * be immediately processed.
 	 */
-	char			name[20];
+	char		name[20];
 	u8			wakeups_enabled;
 	u32			features;
 
-	//u32			latency;
-	//u32			calc_latency;
 	char *rx_buff;
 	size_t rx_size;
 	char *tx_buff;
